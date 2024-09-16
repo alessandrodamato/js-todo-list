@@ -1,0 +1,73 @@
+html{
+  height: 100%;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background: linear-gradient(to bottom right, yellow, white);
+  text-align: center;
+}
+
+h1{
+  margin: 50px 0;
+}
+
+input#todo {
+  margin: 0 0 50px;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+ul#todolist{
+  max-width: 50%;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+ul#todolist li{
+  margin-bottom: 20px;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+  text-align: start;
+}
+
+ul#todolist li.completed .content{
+  text-decoration: line-through;
+}
+
+ul#todolist li.completed .check,
+ul#todolist li.uncompleted .check{
+  padding: 5px;
+  font-size: 1.2rem;
+  color: green;
+}
+
+ul#todolist li.completed .check::after{
+  content: '\1F5F9';  
+}
+
+ul#todolist li.uncompleted .check::after{
+  content: '\2610';
+}
+
+ul#todolist li .cross{
+  display: none;
+  float: right;
+  font-size: 1.2rem;
+  color: red;
+}
+
+ul#todolist li .cross::after{
+  content: '\274C';
+}
+
+ul#todolist li:hover .cross{
+  display: inline;
+}

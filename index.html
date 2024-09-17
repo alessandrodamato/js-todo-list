@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"
+    integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <title>To Do List</title>
 </head>
 <body>
@@ -14,6 +17,10 @@
   <input class="text-center" type="text" placeholder="Aggiungi un todo" name="todo" id="todo">
 
   <ul id="todolist"></ul>
+
+  <button class="filter-btn active" data-filter="all">Mostra tutti</button>
+  <button class="filter-btn" data-filter="completed">Mostra completati</button>
+  <button class="filter-btn" data-filter="uncompleted">Mostra non completati</button>
 
   <script src="/assets/js/script.js"></script>
 </body>

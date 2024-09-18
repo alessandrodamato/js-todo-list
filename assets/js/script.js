@@ -42,9 +42,8 @@ function getAllTodos(){
     .then(res => {
       todos = res.data.todos;
       filteredTodos = [...todos];
-      nextId = todos[todos.length - 1].id + 1;
+      nextId = todos.length > 0 ? todos[todos.length - 1].id + 1 : 0;
       resetTodos();
-      console.log(todos);
     })
     .catch(err => {
       console.log(err);
@@ -54,7 +53,6 @@ function getAllTodos(){
 function saveTodos(){
   axios.post('http://localhost:8080/todo/save', todos)
   .then(res => {
-    console.log(res.data.message);
     printSaveMessage(res.data.message);
   })
   .catch(err => {

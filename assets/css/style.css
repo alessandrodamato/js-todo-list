@@ -37,6 +37,8 @@ ul#todolist li{
   border-bottom: 1px solid black;
   padding-bottom: 5px;
   text-align: start;
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 ul#todolist li.completed .content{

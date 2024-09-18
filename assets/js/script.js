@@ -1,32 +1,14 @@
-let todos = [
-  {
-    id: 1,
-    content: 'fare i compiti',
-    completed: false
-  },
-  {
-    id: 2,
-    content: 'fare la cacca',
-    completed: true
-  },
-  {
-    id: 3,
-    content: 'cucinare',
-    completed: false
-  },
-  {
-    id: 4,
-    content: 'leggere un libro',
-    completed: true
-  },
-];
-
 const todolist = document.getElementById('todolist');
 const todo = document.getElementById('todo');
 const buttons = document.querySelectorAll('.filter-btn');
+const saveButton = document.getElementById('save-todos');
+const saveMessage = document.getElementById('save-message');
 
-let nextId = todos.length + 1;
-let filteredTodos = [...todos];
+let todos;
+let filteredTodos;
+let nextId;
+
+getAllTodos();
 
 buttons.forEach(button => {
   button.addEventListener('click', () => {
@@ -35,7 +17,7 @@ buttons.forEach(button => {
   });
 });
 
-resetTodos();
+saveButton.addEventListener('click', saveTodos);
 
 todo.addEventListener('keyup', function (e) {
   if (e.key === 'Enter') {
@@ -47,9 +29,38 @@ todo.addEventListener('keyup', function (e) {
       });
       todo.value = '';
       filterTodos(document.querySelector('.filter-btn.active').dataset.filter);
+      console.log(todos);
+      
     }
   }
 });
+
+// FUNCTIONS //
+
+function getAllTodos(){
+  axios.get('http://localhost:8080/todo/get-all')
+    .then(res => {
+      todos = res.data.todos;
+      filteredTodos = [...todos];
+      nextId = todos[todos.length - 1].id + 1;
+      resetTodos();
+      console.log(todos);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+}
+
+function saveTodos(){
+  axios.post('http://localhost:8080/todo/save', todos)
+  .then(res => {
+    console.log(res.data.message);
+    printSaveMessage(res.data.message);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+}
 
 function resetTodos() {
   todolist.innerHTML = '';
@@ -114,4 +125,11 @@ function filterTodos(type) {
 function setActiveButton(activeButton) {
   buttons.forEach(button => button.classList.remove('active'));
   activeButton.classList.add('active');
+}
+
+function printSaveMessage(msg){
+  saveMessage.innerHTML = msg;
+  setTimeout(() => {
+    saveMessage.innerHTML = '';
+  }, 3000);
 }

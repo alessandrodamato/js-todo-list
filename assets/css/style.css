@@ -74,7 +74,7 @@ ul#todolist li:hover .cross{
 }
 
 button{
-  margin: 20px 5px 50px;
+  margin: 20px 5px 0;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -85,4 +85,13 @@ button{
 
 button.active{
   background-color: gold;
+}
+
+#save-message{
+  width: 250px;
+  margin: 50px auto;
+  line-height: 50px;
+  border-radius: 10px;
+  background-color: white;
+  color: green;
 }
